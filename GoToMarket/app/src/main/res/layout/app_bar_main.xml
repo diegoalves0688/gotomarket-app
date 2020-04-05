@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.example.GoToMarket.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -20,8 +20,8 @@
             android:background="#ff7d27"
             app:logo="@drawable/logo_min"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:subtitleTextColor="#FFFFFF"
-            app:titleTextColor="#FFFFFF" />
+            app:subtitleTextColor="#ff7d27"
+            app:titleTextColor="#ff7d27"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

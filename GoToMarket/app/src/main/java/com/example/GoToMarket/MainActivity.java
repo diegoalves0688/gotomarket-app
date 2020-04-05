@@ -1,12 +1,10 @@
-package com.example.financial_manager;
+package com.example.GoToMarket;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.icu.text.SimpleDateFormat;
-import android.os.Build;
 import android.os.Bundle;
 
+import com.example.GoToMarket.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.view.View;
@@ -31,28 +29,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import lecho.lib.hellocharts.model.Axis;
-import lecho.lib.hellocharts.model.AxisValue;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.model.Viewport;
-import lecho.lib.hellocharts.view.LineChartView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView totalTextView;
-
-    private DatabaseManager dbmanager;
-
-    private ListView itemListView;
-
-    private ArrayAdapter<String> adapter;
-
-    private ArrayList<String> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +40,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        dbmanager = new DatabaseManager(this);
 
         FloatingActionButton fab = findViewById(R.id.ID1_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -80,23 +58,41 @@ public class MainActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.itemListView);
         listView.setAdapter(adapter);
 
+
         User newUser = new User("Nathan", "San Diego");
         adapter.add(newUser);
         User newUser2 = new User("Nathan2", "San Diego2");
         adapter.add(newUser2);
-        // Or even append an entire new collection
-        // Fetching some data, data has now returned
-        // If data was JSON, convert to ArrayList of User objects.
-        /*JSONArray jsonArray = ...;
-        ArrayList<User> newUsers = User.fromJson(jsonArray)
-        adapter.addAll(newUsers);*/
+        try {
+            HttpsTrustManager.allowAllSSL();
+            WebClient client = new WebClient();
+            client.GetProducts();
+
+            while(client.IsReady() == false){
+                Thread.sleep(1000);
+            }
+
+            ArrayList<Product> productList = client.ProductList();
+
+            for (int i = 0; i < productList.size(); i++) {
+                Product current = productList.get(i);
+                User user = new User(current.getName(), current.getImageUrl());
+                adapter.add(user);
+            }
+
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
                 Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
+                         "Click ListItem Number " + position, Toast.LENGTH_LONG)
                         .show();
             }
         });
@@ -156,8 +152,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.ID1_erase_data) {
 
-            dbmanager = new DatabaseManager(this);
-            dbmanager.clearData();
+
 
             ShowMessage("All data deleted.");
             return true;

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.financial_manager">
+    package="com.example.GoToMarket">
+
 
     <application
         android:allowBackup="true"
@@ -10,34 +11,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".InsertActivity"
+            android:name="com.example.GoToMarket.InsertActivity"
             android:label="@string/title_activity_insert"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.example.GoToMarket.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.financial_manager.MainActivity" />
+                android:value="com.example.GoToMarket.com.example.GoToMarket.MainActivity" />
         </activity>
         <activity
-            android:name=".SearchActivity"
+            android:name="com.example.GoToMarket.SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.example.GoToMarket.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.financial_manager.MainActivity" />
+                android:value="com.example.GoToMarket.com.example.GoToMarket.MainActivity" />
         </activity>
         <activity
-            android:name=".ViewItemActivity"
+            android:name="com.example.GoToMarket.ViewItemActivity"
             android:label="@string/title_activity_view_item"
-            android:parentActivityName=".SearchActivity"
+            android:parentActivityName="com.example.GoToMarket.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.financial_manager.SearchActivity" />
+                android:value="com.example.GoToMarket.com.example.GoToMarket.SearchActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.GoToMarket.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -47,5 +48,8 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

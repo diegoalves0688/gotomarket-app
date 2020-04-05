@@ -1,4 +1,4 @@
-package com.example.financial_manager;
+package com.example.GoToMarket;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.GoToMarket.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class InsertActivity extends AppCompatActivity {

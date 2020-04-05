@@ -1,4 +1,4 @@
-package com.example.financial_manager;
+package com.example.GoToMarket;
 
 import org.junit.Test;
 

@@ -1,9 +1,10 @@
-package com.example.financial_manager;
+package com.example.GoToMarket;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.GoToMarket.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;

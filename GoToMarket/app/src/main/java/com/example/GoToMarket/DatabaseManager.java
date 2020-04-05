@@ -1,4 +1,4 @@
-package com.example.financial_manager;
+package com.example.GoToMarket;
 
 import android.content.ContentValues;
 import android.content.Context;

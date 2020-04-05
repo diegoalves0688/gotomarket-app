@@ -1,4 +1,4 @@
-package com.example.financial_manager;
+package com.example.GoToMarket;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.GoToMarket.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
