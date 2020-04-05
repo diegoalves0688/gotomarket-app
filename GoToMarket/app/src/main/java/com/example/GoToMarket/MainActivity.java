@@ -58,11 +58,6 @@ public class MainActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.itemListView);
         listView.setAdapter(adapter);
 
-
-        User newUser = new User("Nathan", "San Diego");
-        adapter.add(newUser);
-        User newUser2 = new User("Nathan2", "San Diego2");
-        adapter.add(newUser2);
         try {
             HttpsTrustManager.allowAllSSL();
             WebClient client = new WebClient();
@@ -75,9 +70,7 @@ public class MainActivity extends AppCompatActivity
             ArrayList<Product> productList = client.ProductList();
 
             for (int i = 0; i < productList.size(); i++) {
-                Product current = productList.get(i);
-                User user = new User(current.getName(), current.getImageUrl());
-                adapter.add(user);
+                adapter.add(new User(productList.get(i).getName(), productList.get(i).getImageUrl()));
             }
 
         }
