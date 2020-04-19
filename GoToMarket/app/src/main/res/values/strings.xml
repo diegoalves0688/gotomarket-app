@@ -13,8 +13,25 @@
     <string name="menu_new_product">Novo produto</string>
     <string name="menu_login">Login</string>
 
+    <!-- USER SCREEN FIELD TEXT-->
+    <string name="user_name">Nome</string>
+    <string name="user_email">Email</string>
+    <string name="user_password">Senha</string>
+    <string name="user_address">Endereço</string>
+    <string name="user_payment_key">Chave de pagamento</string>
+    <string name="user_payment_token">Token de pagamento</string>
+
+    <!-- PRODUCT SCREEN FIELD TEXT-->
+    <string name="product_name">Nome do produto</string>
+    <string name="product_description">Descrição do produto</string>
+    <string name="product_value">Preço do produto</string>
+    <string name="product_quantity">Quantidade disponível</string>
+    <string name="product_image_url">URL da imagem</string>
+    <string name="product_button">Salvar</string>
+
     <!-- LOGIN SCREEN FIELD TEXT-->
     <string name="login_user_name">Nome de usuário</string>
     <string name="login_password">Senha</string>
     <string name="login_confirm">Entrar</string>
+    <string name="login_to_new_user">Não tem cadastro? Crie um novo!</string>
 </resources>

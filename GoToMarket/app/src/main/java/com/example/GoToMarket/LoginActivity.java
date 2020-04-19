@@ -18,6 +18,8 @@ public class LoginActivity extends AppCompatActivity {
 
     Button loginButton;
 
+    Button goToNewUserButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         this.userNameEditText = findViewById(R.id.login_userName_editText);
         this.userPasswordEditText = findViewById(R.id.login_password_editText2);
         this.loginButton = findViewById(R.id.login_button);
+        this.goToNewUserButton = findViewById(R.id.login_go_to_newuser_button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -38,6 +41,16 @@ public class LoginActivity extends AppCompatActivity {
                 ShowMessage("Login com sucesso: " + userName);
 
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        goToNewUserButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getBaseContext(), NewUserActivity.class);
                 startActivity(intent);
             }
         });
