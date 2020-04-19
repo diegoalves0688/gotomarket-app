@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.GoToMarket">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -10,35 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".ProductActivity" />
+        <activity android:name=".NewUserActivity" />
+        <activity android:name=".NewProductActivity" />
         <activity
-            android:name="com.example.GoToMarket.InsertActivity"
-            android:label="@string/title_activity_insert"
-            android:parentActivityName="com.example.GoToMarket.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.GoToMarket.com.example.GoToMarket.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.example.GoToMarket.SearchActivity"
-            android:label="@string/title_activity_search"
-            android:parentActivityName="com.example.GoToMarket.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.GoToMarket.com.example.GoToMarket.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.example.GoToMarket.ViewItemActivity"
-            android:label="@string/title_activity_view_item"
-            android:parentActivityName="com.example.GoToMarket.SearchActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.GoToMarket.com.example.GoToMarket.SearchActivity" />
-        </activity>
-        <activity
-            android:name="com.example.GoToMarket.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -48,8 +28,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.GoToMarket.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.view.View;
@@ -23,9 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -45,16 +42,13 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), InsertActivity.class);
+                Intent intent = new Intent(getBaseContext(), NewProductActivity.class);
                 startActivity(intent);
             }
         });
 
-        // Construct the data source
-        ArrayList<User> arrayOfUsers = new ArrayList<User>();
-        // Create the adapter to convert the array to views
-        UsersAdapter adapter = new UsersAdapter(this, arrayOfUsers);
-        // Attach the adapter to a ListView
+        ArrayList<Product> arrayOfProducts = new ArrayList<Product>();
+        ProductsAdapter adapter = new ProductsAdapter(this, arrayOfProducts);
         ListView listView = (ListView) findViewById(R.id.itemListView);
         listView.setAdapter(adapter);
 
@@ -70,7 +64,7 @@ public class MainActivity extends AppCompatActivity
             ArrayList<Product> productList = client.ProductList();
 
             for (int i = 0; i < productList.size(); i++) {
-                adapter.add(new User(productList.get(i).getName(), productList.get(i).getImageUrl()));
+                adapter.add(productList.get(i));
             }
 
         }
@@ -139,7 +133,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.ID1_action_settings) {
+        if (id == R.id.ID1_about_action) {
+            Intent intent = new Intent(getBaseContext(), AboutActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -160,16 +156,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_insert) {
-
-            Intent intent = new Intent(getBaseContext(), InsertActivity.class);
+        if (id == R.id.nav_new_product) {
+            Intent intent = new Intent(getBaseContext(), NewProductActivity.class);
             startActivity(intent);
-
-        } else if (id == R.id.nav_expense_view) {
-
-            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+        }else if (id == R.id.nav_login) {
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(intent);
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

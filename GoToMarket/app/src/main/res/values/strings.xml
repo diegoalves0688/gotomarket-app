@@ -6,13 +6,15 @@
     <string name="nav_header_subtitle">user email</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_about">About</string>
+    <string name="about">Sobre o aplicativo:</string>
+    <string name="about_content">Desenvolvido para fins acadêmicos.</string>
 
-    <string name="menu_new_expense">New expense</string>
-    <string name="menu_month_view">Month View</string>
-    <string name="menu_expense_search">Search expense</string>
-    <string name="menu_send">Send by email</string>
-    <string name="title_activity_view_item">Edit Expense</string>
-    <string name="title_activity_search">Search Expense</string>
-    <string name="title_activity_insert">Insert Expense</string>
-    <string name="title_activity_month_view">Month View</string>
+    <!-- SIDE MENU -->
+    <string name="menu_new_product">Novo produto</string>
+    <string name="menu_login">Login</string>
+
+    <!-- LOGIN SCREEN FIELD TEXT-->
+    <string name="login_user_name">Nome de usuário</string>
+    <string name="login_password">Senha</string>
+    <string name="login_confirm">Entrar</string>
 </resources>
