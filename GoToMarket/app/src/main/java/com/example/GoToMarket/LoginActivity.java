@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.util.ArrayList;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText userNameEditText;
@@ -38,10 +42,29 @@ public class LoginActivity extends AppCompatActivity {
                 String userName = userNameEditText.getText().toString();
                 String userPassword = userPasswordEditText.getText().toString();
 
-                ShowMessage("Login com sucesso: " + userName);
+                try {
+                    HttpsTrustManager.allowAllSSL();
+                    WebClient client = new WebClient();
+                    client.GetUser(userName);
 
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);
+                    while(client.IsReady() == false){
+                        Thread.sleep(1000);
+                    }
+
+                    User user = client.GetCurrentUser();
+
+                    if(user != null && user.getPassword().equals(MD5_Hash(userPassword))){
+                        ShowMessage("Login com sucesso: " + userName);
+
+                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+                catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                    ShowMessage("Can't login. Please review your credentials.");
+                }
+
             }
         });
 
@@ -65,6 +88,20 @@ public class LoginActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
+    }
+
+    public static String MD5_Hash(String s) {
+        MessageDigest m = null;
+
+        try {
+            m = MessageDigest.getInstance("MD5");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        m.update(s.getBytes(),0,s.length());
+        String hash = new BigInteger(1, m.digest()).toString(16);
+        return hash;
     }
 
 }

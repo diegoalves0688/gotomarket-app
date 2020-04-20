@@ -27,51 +27,17 @@ public class WebClient {
     private ArrayList<Product> productList;
 
     private String USERS_URL = BASE_URL + "api/users/";
-    private ArrayList<User> userList;
 
     private String ORDERS_URL = BASE_URL + "api/orders/";
     private ArrayList<String> orderList;
 
     public User currentUser;
 
+    public String userEmail;
+
     public String response;
 
     private Boolean done = false;
-
-    /*
-    public WebClient(){
-
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL("https://gotomarket.hopto.org/api/products/");
-
-                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
-
-                    connection.connect();
-
-                    int responseCode = connection.getResponseCode();
-
-                    InputStream inputStream = url.openStream();
-
-                    Reader streamReader = new InputStreamReader(inputStream);
-
-                    Type typeMyType = new TypeToken<ArrayList<Product>>(){}.getType();
-                    Gson gson = new Gson();
-                    ArrayList<Product> list = gson.fromJson(streamReader, typeMyType);
-
-                    productList = list;
-                    done = true;
-                }
-                catch (Exception ex){
-                    System.out.println(ex.getMessage());
-                    done = true;
-                }
-            }
-        });
-
-    }*/
 
     public ArrayList<Product> GetProducts() throws InterruptedException {
 
@@ -108,6 +74,45 @@ public class WebClient {
         });
 
         return productList;
+    }
+
+    public User GetUser(String email) throws InterruptedException {
+
+        this.userEmail = email;
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    HttpsTrustManager.allowAllSSL();
+
+                    URL url = new URL(USERS_URL + userEmail);
+
+                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+
+                    connection.connect();
+
+                    int responseCode = connection.getResponseCode();
+
+                    InputStream inputStream = url.openStream();
+
+                    Reader streamReader = new InputStreamReader(inputStream);
+
+                    Type typeMyType = new TypeToken<User>(){}.getType();
+                    Gson gson = new Gson();
+                    User user = gson.fromJson(streamReader, typeMyType);
+
+                    currentUser = user;
+                    done = true;
+                }
+                catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                    done = true;
+                }
+            }
+        });
+
+        return currentUser;
     }
 
     public String PostNewUser(User user) throws Exception{
@@ -165,54 +170,12 @@ public class WebClient {
         return response;
     }
 
-    public String PostProduct(final String content) throws Exception{
-
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-
-                    URL url = new URL(PRODUCTLIST_URL);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setReadTimeout(20000);
-                    conn.setConnectTimeout(20000);
-                    conn.setRequestMethod("POST");
-                    conn.setDoInput(true);
-                    conn.setDoOutput(true);
-
-                    OutputStream os = conn.getOutputStream();
-                    BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(content);
-                    writer.flush();
-                    writer.close();
-                    os.close();
-
-                    int responseCode=conn.getResponseCode();
-                    if (responseCode == HttpsURLConnection.HTTP_OK) {
-
-                        BufferedReader in=new BufferedReader( new InputStreamReader(conn.getInputStream()));
-                        StringBuffer sb = new StringBuffer("");
-                        String line="";
-                        while((line = in.readLine()) != null) {
-                            sb.append(line);
-                            break;
-                        }
-                        in.close();
-                        response = sb.toString();
-                    }
-                    response = null;
-                }
-                catch (Exception ex){
-                    System.out.println(ex.getMessage());
-                }
-            }
-        });
-
-        return response;
-    }
-
     public Boolean IsReady(){
         return done;
+    }
+
+    public User GetCurrentUser(){
+        return currentUser;
     }
 
     public ArrayList<Product> ProductList(){
