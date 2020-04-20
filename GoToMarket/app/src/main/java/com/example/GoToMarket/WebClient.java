@@ -29,11 +29,12 @@ public class WebClient {
     private String USERS_URL = BASE_URL + "api/users/";
 
     private String ORDERS_URL = BASE_URL + "api/orders/";
-    private ArrayList<String> orderList;
 
     public Product currentProduct;
 
     public User currentUser;
+
+    public Order currentOrder;
 
     public String userEmail;
 
@@ -200,6 +201,61 @@ public class WebClient {
                     String userSerialized = gson.toJson(currentUser);
 
                     writer.write(userSerialized);
+                    writer.flush();
+                    writer.close();
+                    os.close();
+
+                    int responseCode=conn.getResponseCode();
+                    if (responseCode == HttpsURLConnection.HTTP_OK) {
+
+                        BufferedReader in=new BufferedReader( new InputStreamReader(conn.getInputStream()));
+                        StringBuffer sb = new StringBuffer("");
+                        String line="";
+                        while((line = in.readLine()) != null) {
+                            sb.append(line);
+                            break;
+                        }
+                        in.close();
+                        response = sb.toString();
+                    }
+                    response = null;
+                    done = true;
+                }
+                catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                    done = true;
+                }
+            }
+        });
+
+        return response;
+    }
+
+    public String PostNewOrder(Order order) throws Exception{
+
+        this.currentOrder = order;
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    URL url = new URL(ORDERS_URL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(20000);
+                    conn.setConnectTimeout(20000);
+                    conn.setRequestMethod("POST");
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
+                    conn.setRequestProperty("Content-Type", "application/json");
+
+                    OutputStream os = conn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(os, "UTF-8"));
+
+                    Gson gson = new Gson();
+                    String orderSerialized = gson.toJson(currentOrder);
+
+                    writer.write(orderSerialized);
                     writer.flush();
                     writer.close();
                     os.close();

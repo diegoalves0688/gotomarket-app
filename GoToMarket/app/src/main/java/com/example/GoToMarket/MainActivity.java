@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -92,9 +93,17 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                Toast.makeText(getApplicationContext(),
-                         "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                        .show();
+                Product product = (Product)parent.getAdapter().getItem(position);
+                Gson gson = new Gson();
+                String productSerialized = gson.toJson(product);
+
+                Intent intent = new Intent(getBaseContext(), ProductActivity.class);
+                intent.putExtra("productSerialized", productSerialized);
+                startActivity(intent);
+
+
+                String text = "Click ListItem Number " + product.getName() + " " + product.getOwnerId();
+                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
             }
         });
 

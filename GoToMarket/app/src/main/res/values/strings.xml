@@ -31,6 +31,11 @@
     <string name="product_button">Salvar</string>
 
     <!-- LOGIN SCREEN FIELD TEXT-->
+    <string name="product_item_card_number">Número do cartão</string>
+    <string name="product_item_card_exp_date">Validade (12/2030)</string>
+    <string name="product_item_card_security_code">Código de segurança</string>
+
+    <!-- LOGIN SCREEN FIELD TEXT-->
     <string name="login_user_name">Nome de usuário</string>
     <string name="login_password">Senha</string>
     <string name="login_confirm">Entrar</string>
