@@ -47,11 +47,11 @@ public class NewUserActivity extends AppCompatActivity {
                 String userName = userNameEditText.getText().toString();
                 String userPassword = userPasswordEditText.getText().toString();
                 String userEmail = userEmailEditText.getText().toString();
-                String userAdress = userAddressEditText.getText().toString();
+                String userAddress = userAddressEditText.getText().toString();
                 String userPaymentKey = userPaymentKeyEditText.getText().toString();
                 String userPaymentToken = userPaymentTokenEditText.getText().toString();
 
-                User user = new User(userName, userPassword, userEmail, userAdress, userPaymentKey, userPaymentToken);
+                User user = new User(userName, userPassword, userEmail, userAddress, userPaymentKey, userPaymentToken);
 
                 try {
                     HttpsTrustManager.allowAllSSL();
