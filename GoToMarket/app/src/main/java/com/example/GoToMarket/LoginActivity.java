@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.math.BigInteger;
@@ -24,10 +25,14 @@ public class LoginActivity extends AppCompatActivity {
 
     Button goToNewUserButton;
 
+    private DatabaseManager dbmanager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        dbmanager = new DatabaseManager(this);
 
         this.userNameEditText = findViewById(R.id.login_userName_editText);
         this.userPasswordEditText = findViewById(R.id.login_password_editText2);
@@ -48,13 +53,21 @@ public class LoginActivity extends AppCompatActivity {
                     client.GetUser(userName);
 
                     while(client.IsReady() == false){
+                        if(client.interator >= client.max_interator_retries)
+                            throw new Exception("Max wait has reached.");
                         Thread.sleep(1000);
+                        client.interator++;
                     }
 
                     User user = client.GetCurrentUser();
 
                     if(user != null && user.getPassword().equals(MD5_Hash(userPassword))){
-                        ShowMessage("Login com sucesso: " + userName);
+
+                        dbmanager.clearData();
+                        dbmanager.insertUser(user);
+
+                        User loggedUser = dbmanager.loadUser();
+                        ShowMessage("Login com sucesso: " + loggedUser.getEmail());
 
                         Intent intent = new Intent(getBaseContext(), MainActivity.class);
                         startActivity(intent);

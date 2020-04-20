@@ -23,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private DatabaseManager dbmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        dbmanager = new DatabaseManager(this);
+        User loggedUser = dbmanager.loadUser();
+        if(loggedUser != null){
+            TextView loggedUserEmailPrefix = findViewById(R.id.logged_user_email_prefix_textView);
+            loggedUserEmailPrefix.setText("Logado como:");
+            TextView loggedUserEmail = findViewById(R.id.logged_user_email_textView5);
+            loggedUserEmail.setText(loggedUser.getEmail());
+        }
 
         FloatingActionButton fab = findViewById(R.id.ID1_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +69,10 @@ public class MainActivity extends AppCompatActivity
             client.GetProducts();
 
             while(client.IsReady() == false){
+                if(client.interator >= client.max_interator_retries)
+                    throw new Exception("Max wait has reached.");
                 Thread.sleep(1000);
+                client.interator++;
             }
 
             ArrayList<Product> productList = client.ProductList();
@@ -69,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 
         }
         catch (Exception ex){
-            System.out.println(ex.getMessage());
+            ShowMessage(ex.getMessage());
         }
 
 
@@ -139,11 +153,15 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
-        if (id == R.id.ID1_erase_data) {
+        if (id == R.id.ID1_logout) {
+            dbmanager.clearData();
 
+            TextView loggedUserEmailPrefix = findViewById(R.id.logged_user_email_prefix_textView);
+            loggedUserEmailPrefix.setText("");
+            TextView loggedUserEmail = findViewById(R.id.logged_user_email_textView5);
+            loggedUserEmail.setText("");
 
-
-            ShowMessage("All data deleted.");
+            ShowMessage("Logout efetuado com sucesso.");
             return true;
         }
 

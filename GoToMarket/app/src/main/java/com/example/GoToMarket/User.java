@@ -1,6 +1,7 @@
 package com.example.GoToMarket;
 
 public class User {
+    private String id;
     private String name;
     private String password;
     private String email;
@@ -8,11 +9,21 @@ public class User {
     private String payment_id;
     private String payment_key;
 
-    public User(String name, String password, String email, String addresss, String payment_id, String payment_key) {
+    public User(String name, String password, String email, String address, String payment_id, String payment_key) {
         this.setName(name);
         this.setPassword(password);
         this.setEmail(email);
-        this.setAddress(addresss);
+        this.setAddress(address);
+        this.setPayment_id(payment_id);
+        this.setPayment_key(payment_key);
+    }
+
+    public User(String id, String name, String password, String email, String address, String payment_id, String payment_key) {
+        this.setId(id);
+        this.setName(name);
+        this.setPassword(password);
+        this.setEmail(email);
+        this.setAddress(address);
         this.setPayment_id(payment_id);
         this.setPayment_key(payment_key);
     }
@@ -63,5 +74,13 @@ public class User {
 
     public void setPayment_key(String payment_key) {
         this.payment_key = payment_key;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

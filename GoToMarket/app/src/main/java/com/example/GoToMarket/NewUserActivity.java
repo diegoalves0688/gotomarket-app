@@ -59,7 +59,10 @@ public class NewUserActivity extends AppCompatActivity {
                     client.PostNewUser(user);
 
                     while(client.IsReady() == false){
+                        if(client.interator >= client.max_interator_retries)
+                            throw new Exception("Max wait has reached.");
                         Thread.sleep(1000);
+                        client.interator++;
                     }
                 }
                 catch (Exception ex){

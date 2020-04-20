@@ -4,17 +4,23 @@ public class Product {
 
     private String name;
 
+    private String description;
+
     private Long price;
 
     private Long quantity;
 
     private String imageUrl;
 
-    public Product(String name, Long price, Long quantity, String imageUrl) {
+    private String ownerId;
+
+    public Product(String name, String description, Long price, Long quantity, String imageUrl, String ownerId) {
         this.setName(name);
+        this.setDescription(description);
         this.setPrice(price);
         this.setQuantity(quantity);
         this.setImageUrl(imageUrl);
+        this.setOwnerId(ownerId);
     }
 
     public String getName() {
@@ -47,5 +53,21 @@ public class Product {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 }

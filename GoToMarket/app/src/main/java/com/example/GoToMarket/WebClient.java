@@ -31,6 +31,8 @@ public class WebClient {
     private String ORDERS_URL = BASE_URL + "api/orders/";
     private ArrayList<String> orderList;
 
+    public Product currentProduct;
+
     public User currentUser;
 
     public String userEmail;
@@ -38,6 +40,9 @@ public class WebClient {
     public String response;
 
     private Boolean done = false;
+
+    public long interator = 1;
+    public long max_interator_retries = 10;
 
     public ArrayList<Product> GetProducts() throws InterruptedException {
 
@@ -74,6 +79,61 @@ public class WebClient {
         });
 
         return productList;
+    }
+
+    public String PostNewProduct(Product product) throws Exception{
+
+        this.currentProduct = product;
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    URL url = new URL(PRODUCTLIST_URL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(20000);
+                    conn.setConnectTimeout(20000);
+                    conn.setRequestMethod("POST");
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
+                    conn.setRequestProperty("Content-Type", "application/json");
+
+                    OutputStream os = conn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(os, "UTF-8"));
+
+                    Gson gson = new Gson();
+                    String userSerialized = gson.toJson(currentProduct);
+
+                    writer.write(userSerialized);
+                    writer.flush();
+                    writer.close();
+                    os.close();
+
+                    int responseCode=conn.getResponseCode();
+                    if (responseCode == HttpsURLConnection.HTTP_OK) {
+
+                        BufferedReader in=new BufferedReader( new InputStreamReader(conn.getInputStream()));
+                        StringBuffer sb = new StringBuffer("");
+                        String line="";
+                        while((line = in.readLine()) != null) {
+                            sb.append(line);
+                            break;
+                        }
+                        in.close();
+                        response = sb.toString();
+                    }
+                    response = null;
+                    done = true;
+                }
+                catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                    done = true;
+                }
+            }
+        });
+
+        return response;
     }
 
     public User GetUser(String email) throws InterruptedException {

@@ -7,7 +7,7 @@
         android:title="@string/action_about"
         app:showAsAction="never" />
     <item
-        android:id="@+id/ID1_erase_data"
+        android:id="@+id/ID1_logout"
         android:orderInCategory="101"
-        android:title="Erase data" />
+        android:title="@string/make_logout" />
 </menu>
