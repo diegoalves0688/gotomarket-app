@@ -100,25 +100,8 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(getBaseContext(), ProductActivity.class);
                 intent.putExtra("productSerialized", productSerialized);
                 startActivity(intent);
-
-
-                String text = "Click ListItem Number " + product.getName() + " " + product.getOwnerId();
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
             }
         });
-
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                int current = position + 1;
-
-                Intent intent = new Intent(getBaseContext(), ViewItemActivity.class);
-                intent.putExtra("itemId", position);
-                startActivity(intent);
-            }
-        });*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
