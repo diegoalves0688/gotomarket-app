@@ -46,6 +46,25 @@ public class NewUserActivity extends AppCompatActivity {
 
                 String userName = userNameEditText.getText().toString();
                 String userPassword = userPasswordEditText.getText().toString();
+                String userEmail = userEmailEditText.getText().toString();
+                String userAdress = userAddressEditText.getText().toString();
+                String userPaymentKey = userPaymentKeyEditText.getText().toString();
+                String userPaymentToken = userPaymentTokenEditText.getText().toString();
+
+                User user = new User(userName, userPassword, userEmail, userAdress, userPaymentKey, userPaymentToken);
+
+                try {
+                    HttpsTrustManager.allowAllSSL();
+                    WebClient client = new WebClient();
+                    client.PostNewUser(user);
+
+                    while(client.IsReady() == false){
+                        Thread.sleep(1000);
+                    }
+                }
+                catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                }
 
                 ShowMessage("Usuario criado com sucesso: " + userName);
 
