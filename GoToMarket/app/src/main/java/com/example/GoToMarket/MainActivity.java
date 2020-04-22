@@ -169,6 +169,12 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_new_product) {
             Intent intent = new Intent(getBaseContext(), NewProductActivity.class);
             startActivity(intent);
+        }else if (id == R.id.nav_sales) {
+            Intent intent = new Intent(getBaseContext(), SalesActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_orders) {
+            Intent intent = new Intent(getBaseContext(), OrdersActivity.class);
+            startActivity(intent);
         }else if (id == R.id.nav_login) {
             Intent intent = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(intent);

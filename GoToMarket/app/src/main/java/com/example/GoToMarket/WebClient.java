@@ -29,6 +29,7 @@ public class WebClient {
     private String USERS_URL = BASE_URL + "api/users/";
 
     private String ORDERS_URL = BASE_URL + "api/orders/";
+    private ArrayList<Order> orderList;
 
     public Product currentProduct;
 
@@ -286,6 +287,44 @@ public class WebClient {
         return response;
     }
 
+    public ArrayList<Order> GetSales() throws InterruptedException {
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    HttpsTrustManager.allowAllSSL();
+
+                    URL url = new URL(ORDERS_URL);
+
+                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+
+                    connection.connect();
+
+                    int responseCode = connection.getResponseCode();
+
+                    InputStream inputStream = url.openStream();
+
+                    Reader streamReader = new InputStreamReader(inputStream);
+
+                    Type typeMyType = new TypeToken<ArrayList<Order>>(){}.getType();
+                    Gson gson = new Gson();
+                    ArrayList<Order> list = gson.fromJson(streamReader, typeMyType);
+
+                    orderList = list;
+                    done = true;
+                }
+                catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                    done = true;
+                }
+            }
+        });
+
+        return orderList;
+    }
+
+
     public Boolean IsReady(){
         return done;
     }
@@ -296,5 +335,9 @@ public class WebClient {
 
     public ArrayList<Product> ProductList(){
         return productList;
+    }
+
+    public ArrayList<Order> OrderList(){
+        return orderList;
     }
 }

@@ -12,6 +12,8 @@
 
     <!-- SIDE MENU -->
     <string name="menu_new_product">Novo produto</string>
+    <string name="menu_sales">Vendas</string>
+    <string name="menu_orders">Compras</string>
     <string name="menu_login">Login</string>
 
     <!-- USER SCREEN FIELD TEXT-->
