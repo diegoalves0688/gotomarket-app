@@ -3,6 +3,7 @@ package com.example.GoToMarket;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -11,10 +12,18 @@ import java.util.ArrayList;
 
 public class OrdersActivity extends AppCompatActivity {
 
+    private DatabaseManager dbmanager;
+
+    String loggedUserId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
+
+        dbmanager = new DatabaseManager(this);
+
+        verifyLogin();
 
         ArrayList<Order> arrayOfOrders = new ArrayList<Order>();
         OrdersAdapter adapter = new OrdersAdapter(this, arrayOfOrders);
@@ -24,7 +33,7 @@ public class OrdersActivity extends AppCompatActivity {
         try {
             HttpsTrustManager.allowAllSSL();
             WebClient client = new WebClient();
-            client.GetSales();
+            client.GetOrders(loggedUserId);
 
             while(client.IsReady() == false){
                 if(client.interator >= client.max_interator_retries)
@@ -54,5 +63,17 @@ public class OrdersActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
+    }
+
+    public void verifyLogin(){
+        dbmanager = new DatabaseManager(this);
+        User loggedUser = dbmanager.loadUser();
+        if(loggedUser == null){
+            ShowMessage("Você precisa estar logado.");
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
+        }else{
+            loggedUserId = loggedUser.getId();
+        }
     }
 }

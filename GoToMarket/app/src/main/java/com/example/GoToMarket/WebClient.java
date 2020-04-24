@@ -287,7 +287,7 @@ public class WebClient {
         return response;
     }
 
-    public ArrayList<Order> GetSales() throws InterruptedException {
+    public ArrayList<Order> GetSales(final String loggedUserId) throws InterruptedException {
 
         AsyncTask.execute(new Runnable() {
             @Override
@@ -295,7 +295,7 @@ public class WebClient {
                 try {
                     HttpsTrustManager.allowAllSSL();
 
-                    URL url = new URL(ORDERS_URL);
+                    URL url = new URL(ORDERS_URL + "owner/" + loggedUserId);
 
                     HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
 
@@ -324,6 +324,42 @@ public class WebClient {
         return orderList;
     }
 
+    public ArrayList<Order> GetOrders(final String loggedUserId) throws InterruptedException {
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    HttpsTrustManager.allowAllSSL();
+
+                    URL url = new URL(ORDERS_URL + "buyer/" + loggedUserId);
+
+                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+
+                    connection.connect();
+
+                    int responseCode = connection.getResponseCode();
+
+                    InputStream inputStream = url.openStream();
+
+                    Reader streamReader = new InputStreamReader(inputStream);
+
+                    Type typeMyType = new TypeToken<ArrayList<Order>>(){}.getType();
+                    Gson gson = new Gson();
+                    ArrayList<Order> list = gson.fromJson(streamReader, typeMyType);
+
+                    orderList = list;
+                    done = true;
+                }
+                catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                    done = true;
+                }
+            }
+        });
+
+        return orderList;
+    }
 
     public Boolean IsReady(){
         return done;
