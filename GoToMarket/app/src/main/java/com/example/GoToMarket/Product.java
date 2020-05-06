@@ -10,16 +10,16 @@ public class Product {
 
     private Long quantity;
 
-    private String imageId;
+    private String imageUrl;
 
     private String ownerId;
 
-    public Product(String name, String description, Long price, Long quantity, String imageId, String ownerId) {
+    public Product(String name, String description, Long price, Long quantity, String imageUrl, String ownerId) {
         this.setName(name);
         this.setDescription(description);
         this.setPrice(price);
         this.setQuantity(quantity);
-        this.setImageId(imageId);
+        this.setImageUrl(imageUrl);
         this.setOwnerId(ownerId);
     }
 
@@ -43,12 +43,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getImageId() {
-        return imageId;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {

@@ -51,10 +51,6 @@ public class WebClient {
 
     public String imageUniqueId;
 
-    public ImageContent imageContent;
-
-    public Map<String, ImageContent> imageInstanceCache;
-
     private Boolean done = false;
 
     public long interator = 1;
@@ -422,48 +418,6 @@ public class WebClient {
         return orderList;
     }
 
-    public ImageContent GetImageById(final String imageId) throws InterruptedException {
-
-        this.imageUniqueId = imageId;
-
-
-        if(imageInstanceCache == null){
-            imageInstanceCache = new HashMap<String, ImageContent>();
-        }
-
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    HttpsTrustManager.allowAllSSL();
-
-                    URL url = new URL(PRODUCTLIST_URL + "image/" + imageId);
-
-                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-
-                    connection.connect();
-
-                    InputStream inputStream = url.openStream();
-
-                    Reader streamReader = new InputStreamReader(inputStream);
-
-                    Type typeMyType = new TypeToken<ImageContent>(){}.getType();
-                    Gson gson = new Gson();
-                    imageContent = gson.fromJson(streamReader, typeMyType);
-                    imageInstanceCache.put(imageId, imageContent);
-
-                    done = true;
-                }
-                catch (Exception ex){
-                    System.out.println(ex.getMessage());
-                    done = true;
-                }
-            }
-        });
-
-        return imageContent;
-    }
-
     public Boolean IsReady(){
         return done;
     }
@@ -478,10 +432,6 @@ public class WebClient {
 
     public ArrayList<Order> OrderList(){
         return orderList;
-    }
-
-    public ImageContent GetImageContent(){
-        return imageContent;
     }
 
     public String GetImageUniqueId(){

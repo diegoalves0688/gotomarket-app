@@ -1,9 +1,6 @@
 package com.example.GoToMarket;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,50 +38,8 @@ public class ProductsAdapter extends ArrayAdapter<Product> {
         textViewName.setText(product.getName());
         textViewPrice.setText(product.getPrice().toString());
 
-        //Picasso.get().load(product.getImageId()).into(iconImageView);
-
-        Picasso.get().load(product.getImageId()).into(iconImageView);
-
-        //SetImage(iconImageView, product.getImageId());
+        Picasso.get().load(product.getImageUrl()).into(iconImageView);
 
         return convertView;
     }
-
-    public void SetImage(ImageView imageView, String imageId){
-        try {
-
-            HttpsTrustManager.allowAllSSL();
-
-            if(client.imageInstanceCache != null && client.imageInstanceCache.containsKey(imageId)){
-                ImageContent imageContent = client.imageInstanceCache.get(imageId);
-                if(imageContent.name != null){
-                    byte[] decodedString = Base64.decode(imageContent.image, Base64.DEFAULT);
-                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                    imageView.setImageBitmap(decodedByte);
-                    return;
-                }
-            }
-
-            client.GetImageById(imageId);
-
-            while(client.IsReady() == false){
-                if(client.interator >= client.max_interator_retries)
-                    throw new Exception("Max wait has reached.");
-                Thread.sleep(1000);
-                client.interator++;
-            }
-
-            ImageContent imageContent = client.GetImageContent();
-
-            if(imageContent.name != null){
-                byte[] decodedString = Base64.decode(imageContent.image, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                imageView.setImageBitmap(decodedByte);
-            }
-        }
-        catch (Exception ex){
-            String excep = ex.getMessage();
-        }
-    }
-
 }
