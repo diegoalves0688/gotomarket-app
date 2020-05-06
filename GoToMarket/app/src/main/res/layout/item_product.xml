@@ -9,18 +9,18 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="140dp"
         android:padding="6dip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="93dp"
+            android:layout_width="140dp"
             android:layout_height="58dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="60dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="0dp"
             android:contentDescription="TODO"
             android:src="@drawable/logo" />
@@ -32,13 +32,13 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@id/icon"
-            android:text="Description"
+            android:text="Price"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/firstLine"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="26dp"
             android:layout_alignWithParentIfMissing="true"
             android:layout_above="@id/secondLine"
             android:layout_alignParentTop="true"
@@ -46,7 +46,8 @@
             android:layout_toRightOf="@id/icon"
             android:gravity="center_vertical"
             android:text="Example application"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

@@ -1,6 +1,10 @@
 package com.example.GoToMarket;
 
 import android.content.Context;
+import android.graphics.BitmapShader;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
@@ -37,8 +42,8 @@ public class ProductsAdapter extends ArrayAdapter<Product> {
 
         textViewName.setText(product.getName());
         textViewPrice.setText(product.getPrice().toString());
-
-        Picasso.get().load(product.getImageUrl()).into(iconImageView);
+        
+        Picasso.get().load(product.getImageUrl()).resize(140, 140).centerCrop().into(iconImageView);
 
         return convertView;
     }
