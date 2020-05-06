@@ -13,14 +13,16 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.Console;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class ProductsAdapter extends ArrayAdapter<Product> {
+
+    WebClient client;
+
     public ProductsAdapter(Context context, ArrayList<Product> products) {
         super(context, 0, products);
+
+        client = new WebClient();
     }
 
     @Override
@@ -36,44 +38,53 @@ public class ProductsAdapter extends ArrayAdapter<Product> {
         TextView textViewName = (TextView) convertView.findViewById(R.id.firstLine);
         TextView textViewPrice = (TextView) convertView.findViewById(R.id.secondLine);
 
-        String imageUrl = product.getImageUrl();
-
-        Picasso.get().load(imageUrl).into(iconImageView);
-
         textViewName.setText(product.getName());
         textViewPrice.setText(product.getPrice().toString());
 
-        if(imageUrl.equals("21efda5f-0db7-4ecb-a421-52a89287db10")){
-            try {
-                HttpsTrustManager.allowAllSSL();
-                WebClient client = new WebClient();
-                client.GetImageById(imageUrl);
+        //Picasso.get().load(product.getImageId()).into(iconImageView);
 
-                while(client.IsReady() == false){
-                    if(client.interator >= client.max_interator_retries)
-                        throw new Exception("Max wait has reached.");
-                    Thread.sleep(1000);
-                    client.interator++;
-                }
+        Picasso.get().load(product.getImageId()).into(iconImageView);
 
-                ImageContent imageContent = client.GetImageContent();
+        //SetImage(iconImageView, product.getImageId());
 
+        return convertView;
+    }
+
+    public void SetImage(ImageView imageView, String imageId){
+        try {
+
+            HttpsTrustManager.allowAllSSL();
+
+            if(client.imageInstanceCache != null && client.imageInstanceCache.containsKey(imageId)){
+                ImageContent imageContent = client.imageInstanceCache.get(imageId);
                 if(imageContent.name != null){
                     byte[] decodedString = Base64.decode(imageContent.image, Base64.DEFAULT);
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                    iconImageView.setImageBitmap(decodedByte);
+                    imageView.setImageBitmap(decodedByte);
+                    return;
                 }
-
-
             }
-            catch (Exception ex){
-                String excep = ex.getMessage();
+
+            client.GetImageById(imageId);
+
+            while(client.IsReady() == false){
+                if(client.interator >= client.max_interator_retries)
+                    throw new Exception("Max wait has reached.");
+                Thread.sleep(1000);
+                client.interator++;
+            }
+
+            ImageContent imageContent = client.GetImageContent();
+
+            if(imageContent.name != null){
+                byte[] decodedString = Base64.decode(imageContent.image, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageView.setImageBitmap(decodedByte);
             }
         }
-
-
-
-        return convertView;
+        catch (Exception ex){
+            String excep = ex.getMessage();
+        }
     }
 
 }

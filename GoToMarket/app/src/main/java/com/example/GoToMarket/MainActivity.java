@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity
         listView.setAdapter(adapter);
 
         try {
-            HttpsTrustManager.allowAllSSL();
             WebClient client = new WebClient();
             client.GetProducts();
 

@@ -147,7 +147,7 @@ public class NewProductActivity extends AppCompatActivity {
                     client.interator++;
                 }
 
-                ShowMessage("Imagem criada com sucesso.");
+                imageUrlEditText.setText("http://gotomarket.hopto.org/api/products/images/" + client.GetImageUniqueId() + ".png");
 
             }catch (Exception ex){
                 ShowMessage(ex.getMessage());

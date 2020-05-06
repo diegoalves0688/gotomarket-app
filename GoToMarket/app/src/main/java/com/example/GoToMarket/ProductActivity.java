@@ -70,37 +70,7 @@ public class ProductActivity extends AppCompatActivity {
 
         currentProduct = product;
 
-        Picasso.get().load(product.getImageUrl()).into(productImageView);
-
-        if(product.getImageUrl().equals("21efda5f-0db7-4ecb-a421-52a89287db10")){
-            try {
-                HttpsTrustManager.allowAllSSL();
-                WebClient client = new WebClient();
-                client.GetImageById(product.getImageUrl());
-
-                while(client.IsReady() == false){
-                    if(client.interator >= client.max_interator_retries)
-                        throw new Exception("Max wait has reached.");
-                    Thread.sleep(1000);
-                    client.interator++;
-                }
-
-                ImageContent imageContent = client.GetImageContent();
-
-                if(imageContent.name != null){
-                    byte[] decodedString = Base64.decode(imageContent.image, Base64.DEFAULT);
-                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                    productImageView.setImageBitmap(decodedByte);
-                }
-
-
-            }
-            catch (Exception ex){
-                String excep = ex.getMessage();
-            }
-        }
-
-
+        Picasso.get().load(product.getImageId()).into(productImageView);
 
         productNameTextView.setText(product.getName());
         productValueTextView.setText("R$ " + String.valueOf(product.getPrice()));

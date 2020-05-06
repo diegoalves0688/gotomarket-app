@@ -19,13 +19,15 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class WebClient {
 
-    private String BASE_URL = "https://gotomarket.hopto.org/";
+    private String BASE_URL = "http://gotomarket.hopto.org/";
 
     private String PRODUCTLIST_URL = BASE_URL + "api/products/";
     private ArrayList<Product> productList;
@@ -51,6 +53,8 @@ public class WebClient {
 
     public ImageContent imageContent;
 
+    public Map<String, ImageContent> imageInstanceCache;
+
     private Boolean done = false;
 
     public long interator = 1;
@@ -66,11 +70,9 @@ public class WebClient {
 
                     URL url = new URL(PRODUCTLIST_URL);
 
-                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
                     connection.connect();
-
-                    int responseCode = connection.getResponseCode();
 
                     InputStream inputStream = url.openStream();
 
@@ -215,11 +217,9 @@ public class WebClient {
 
                     URL url = new URL(USERS_URL + userEmail);
 
-                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
                     connection.connect();
-
-                    int responseCode = connection.getResponseCode();
 
                     InputStream inputStream = url.openStream();
 
@@ -362,11 +362,9 @@ public class WebClient {
 
                     URL url = new URL(ORDERS_URL + "owner/" + loggedUserId);
 
-                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
                     connection.connect();
-
-                    int responseCode = connection.getResponseCode();
 
                     InputStream inputStream = url.openStream();
 
@@ -399,11 +397,9 @@ public class WebClient {
 
                     URL url = new URL(ORDERS_URL + "buyer/" + loggedUserId);
 
-                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
                     connection.connect();
-
-                    int responseCode = connection.getResponseCode();
 
                     InputStream inputStream = url.openStream();
 
@@ -430,6 +426,11 @@ public class WebClient {
 
         this.imageUniqueId = imageId;
 
+
+        if(imageInstanceCache == null){
+            imageInstanceCache = new HashMap<String, ImageContent>();
+        }
+
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -438,11 +439,9 @@ public class WebClient {
 
                     URL url = new URL(PRODUCTLIST_URL + "image/" + imageId);
 
-                    HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
                     connection.connect();
-
-                    int responseCode = connection.getResponseCode();
 
                     InputStream inputStream = url.openStream();
 
@@ -451,6 +450,7 @@ public class WebClient {
                     Type typeMyType = new TypeToken<ImageContent>(){}.getType();
                     Gson gson = new Gson();
                     imageContent = gson.fromJson(streamReader, typeMyType);
+                    imageInstanceCache.put(imageId, imageContent);
 
                     done = true;
                 }
@@ -482,5 +482,9 @@ public class WebClient {
 
     public ImageContent GetImageContent(){
         return imageContent;
+    }
+
+    public String GetImageUniqueId(){
+        return imageUniqueId;
     }
 }
