@@ -39,9 +39,13 @@ public class ProductsAdapter extends ArrayAdapter<Product> {
         ImageView iconImageView = (ImageView) convertView.findViewById(R.id.icon);
         TextView textViewName = (TextView) convertView.findViewById(R.id.firstLine);
         TextView textViewPrice = (TextView) convertView.findViewById(R.id.secondLine);
+        TextView textViewInstallments = (TextView) convertView.findViewById(R.id.thirdLine);
 
         textViewName.setText(product.getName());
         textViewPrice.setText("R$ " + product.getPrice().toString());
+
+
+        textViewInstallments.setText("1x de R$ " + product.getPrice().toString());
 
         Picasso.get().load(product.getImageUrl()).resize(140, 140).centerCrop().into(iconImageView);
 

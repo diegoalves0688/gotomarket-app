@@ -28,7 +28,7 @@
         <TextView
             android:id="@+id/firstLine"
             android:layout_width="fill_parent"
-            android:layout_height="16dp"
+            android:layout_height="12dp"
             android:layout_alignWithParentIfMissing="true"
             android:layout_above="@id/secondLine"
             android:layout_alignParentTop="true"
@@ -41,13 +41,24 @@
         <TextView
             android:id="@+id/secondLine"
             android:layout_width="fill_parent"
-            android:layout_height="65dip"
+            android:layout_height="75dip"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@id/icon"
             android:text="Price"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/thirdLine"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/icon"
+            android:text="installments"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="14sp" />
 
 
     </RelativeLayout>

@@ -50,15 +50,6 @@ public class MainActivity extends AppCompatActivity
             loggedUserEmail.setText(loggedUser.getEmail());
         }
 
-        FloatingActionButton fab = findViewById(R.id.ID1_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), NewProductActivity.class);
-                startActivity(intent);
-            }
-        });
-
         ArrayList<Product> arrayOfProducts = new ArrayList<Product>();
         ProductsAdapter adapter = new ProductsAdapter(this, arrayOfProducts);
         ListView listView = (ListView) findViewById(R.id.itemListView);

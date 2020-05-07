@@ -27,14 +27,4 @@
 
     <include layout="@layout/content_main" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/ID1_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="#ffffff"
-        app:maxImageSize="40dp"
-        app:srcCompat="@drawable/plus_icon_orange" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
