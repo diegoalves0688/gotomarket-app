@@ -1,6 +1,6 @@
 # gotomarket-app
 
-Android Java
+A simple App for sell and buy products.
 
 ##### Screenshots:
 
