@@ -45,7 +45,7 @@ public class ProductsAdapter extends ArrayAdapter<Product> {
         textViewPrice.setText("R$ " + product.getPrice().toString());
 
 
-        textViewInstallments.setText("1x de R$ " + product.getPrice().toString());
+        textViewInstallments.setText("À vista");
 
         Picasso.get().load(product.getImageUrl()).resize(140, 140).centerCrop().into(iconImageView);
 
