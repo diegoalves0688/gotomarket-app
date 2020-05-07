@@ -2,6 +2,15 @@
 
 A simple App to sell and buy anything.
 
+Features:
+- Simple user registration
+- Simple product registration
+- Product list navigation
+- Product details
+- Integrated photo acquisition
+- Orders management
+- Sales management
+
 ##### Screenshots:
 
 | | | |
