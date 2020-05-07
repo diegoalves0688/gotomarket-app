@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_gravity="clip_vertical|top"
-    tools:context="com.example.GoToMarket.OrdersActivity">
+    tools:context="com.example.GoToMarket.SalesActivity">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/item_order_icon"
+            android:id="@+id/item_sale_icon"
             android:layout_width="53dp"
             android:layout_height="58dp"
             android:layout_alignParentTop="true"
@@ -26,25 +26,25 @@
             app:srcCompat="@android:drawable/presence_online" />
 
         <TextView
-            android:id="@+id/item_order_secondLine"
+            android:id="@+id/item_sale_secondLine"
             android:layout_width="fill_parent"
             android:layout_height="25dip"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/item_order_icon"
+            android:layout_toRightOf="@id/item_sale_icon"
             android:text="Description"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/item_order_firstLine"
+            android:id="@+id/item_sale_firstLine"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignWithParentIfMissing="true"
-            android:layout_above="@id/item_order_secondLine"
+            android:layout_above="@id/item_sale_secondLine"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_toRightOf="@id/item_order_icon"
+            android:layout_toRightOf="@id/item_sale_icon"
             android:gravity="center_vertical"
             android:text="Example application"
             android:textSize="16sp" />

@@ -21,15 +21,14 @@ public class OrdersAdapter extends ArrayAdapter<Order> {
         Order order = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_order, parent, false);
         }
 
-        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.icon);
-        TextView textViewName = (TextView) convertView.findViewById(R.id.firstLine);
-        TextView textViewPrice = (TextView) convertView.findViewById(R.id.secondLine);
+        TextView textViewName = (TextView) convertView.findViewById(R.id.item_order_firstLine);
+        TextView textViewPrice = (TextView) convertView.findViewById(R.id.item_order_secondLine);
 
         textViewName.setText(order.getProductName());
-        textViewPrice.setText(order.getValue().toString());
+        textViewPrice.setText("R$ " + order.getValue().toString());
 
         return convertView;
     }
