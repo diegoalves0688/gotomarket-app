@@ -1,6 +1,6 @@
 # gotomarket-app
 
-A simple App for sell and buy products.
+A simple App to sell and buy products.
 
 ##### Screenshots:
 
