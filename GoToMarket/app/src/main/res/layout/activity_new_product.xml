@@ -55,33 +55,16 @@
 
     <ImageView
         android:id="@+id/new_product_imageView"
-        android:layout_width="244dp"
-        android:layout_height="226dp"
+        android:layout_width="219dp"
+        android:layout_height="202dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintHorizontal_bias="0.796"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.273"
+        app:layout_constraintVertical_bias="0.26"
         app:srcCompat="@drawable/ic_menu_camera" />
-
-    <EditText
-        android:id="@+id/new_product_name_editText2"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#e0e0e0"
-        android:ems="10"
-        android:hint="@string/product_name"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.567" />
 
     <Button
         android:id="@+id/new_product_photo_button"
@@ -99,39 +82,21 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <EditText
-        android:id="@+id/new_product_quantity_editText6"
+        android:id="@+id/new_product_name_editText2"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="#e0e0e0"
         android:ems="10"
-        android:hint="@string/product_quantity"
-        android:inputType="number"
+        android:hint="@string/product_name"
+        android:inputType="textPersonName"
         android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.752" />
-
-    <Button
-        android:id="@+id/new_product_button"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/button"
-        android:text="Salvar"
-        android:textColor="#ff7d27"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949" />
+        app:layout_constraintVertical_bias="0.568" />
 
     <EditText
         android:id="@+id/new_product_description_editText7"
@@ -146,10 +111,42 @@
         android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.849" />
+        app:layout_constraintVertical_bias="0.85" />
+
+    <EditText
+        android:id="@+id/new_product_quantity_editText6"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#e0e0e0"
+        android:ems="10"
+        android:hint="@string/product_quantity"
+        android:inputType="number"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.753" />
+
+    <Button
+        android:id="@+id/new_product_button"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button"
+        android:text="Salvar"
+        android:textColor="#ff7d27"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
     <EditText
         android:id="@+id/new_product_value_editText3"
@@ -164,10 +161,9 @@
         android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.658" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
