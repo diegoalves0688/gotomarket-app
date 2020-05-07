@@ -21,8 +21,8 @@
     <string name="user_email">Email</string>
     <string name="user_password">Senha</string>
     <string name="user_address">Endereço</string>
-    <string name="user_payment_key">Chave de pagamento</string>
-    <string name="user_payment_token">Token de pagamento</string>
+    <string name="user_payment_key">MerchantId</string>
+    <string name="user_payment_token">MerchantKey</string>
 
     <!-- PRODUCT SCREEN FIELD TEXT-->
     <string name="product_name">Nome do produto</string>
@@ -42,4 +42,9 @@
     <string name="login_password">Senha</string>
     <string name="login_confirm">Entrar</string>
     <string name="login_to_new_user">Não tem cadastro? Crie um novo!</string>
+
+
+    <string name="link_payment_provider">
+        <a href="https://www.cielo.com.br/e-commerce/api/">Crie suas credenciais Cielo e-commerce clicando aqui.</a>
+    </string>
 </resources>

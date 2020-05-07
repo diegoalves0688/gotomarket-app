@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NewUserActivity extends AppCompatActivity {
@@ -30,6 +32,9 @@ public class NewUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
+
+        TextView text = (TextView) findViewById(R.id.payment_provider_link_textview);
+        text.setMovementMethod(LinkMovementMethod.getInstance());
 
         this.userNameEditText = findViewById(R.id.new_user_name_editText);
         this.userPasswordEditText = findViewById(R.id.new_user_password_editText6);
