@@ -15,7 +15,7 @@ Features:
 
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/product-list-screen.jpg" width="250"> |  <img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/product-screen-1.jpg" width="250">|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/product-screen-2.jpg" width="250">|
-|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/main-menu.jpg" width="250">  |  <img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/login-screen.jpg" width="250">|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/new-user-screen.jpg" width="250">|
-|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/new-product-screen.jpg" width="250">  |  <img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/orders-screen.jpg" width="250">| - |
+|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/screens/product-list.png" width="250"> |  <img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/screens/product-screen-1.png" width="250">|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/screens/product-screen-2.png" width="250">|
+|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/screens/main-menu.png" width="250">  |  <img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/screens/orders.png" width="250">|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/screens/login.png" width="250">|
+|<img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/screens/new-user.png" width="250">  |  <img src="https://github.com/diegoalves0688/gotomarket-app/raw/master/images/screens/new-product.png" width="250">| - |
 |  |  ||
