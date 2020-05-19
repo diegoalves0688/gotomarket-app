@@ -10,6 +10,10 @@
     <string name="about">Sobre o aplicativo:</string>
     <string name="about_content">Desenvolvido para fins acadêmicos.</string>
 
+
+    <!-- MAIN CONTENT -->
+    <string name="main_search">Procurar no catálogo</string>
+
     <!-- SIDE MENU -->
     <string name="menu_new_product">Novo produto</string>
     <string name="menu_sales">Vendas</string>

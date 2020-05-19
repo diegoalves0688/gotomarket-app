@@ -70,7 +70,6 @@ public class ProductActivity extends AppCompatActivity {
 
         currentProduct = product;
 
-        //Picasso.get().load(product.getImageUrl()).into(productImageView);
         Picasso.get().load(product.getImageUrl()).resize(240, 240).centerCrop().into(productImageView);
 
         productNameTextView.setText(product.getName());

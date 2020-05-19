@@ -2,20 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchEditText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ff7d27"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.GoToMarket.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/search_field"
+        android:hint="@string/main_search"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColor="#ff7d27"
+        android:textColorHint="#ff7d27"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/searchButton"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="33dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:drawable/ic_menu_search"
+        android:textColor="#ff7d27"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/itemListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.315" />
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
