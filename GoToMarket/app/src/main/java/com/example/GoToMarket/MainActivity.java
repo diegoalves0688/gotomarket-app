@@ -23,6 +23,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity
 
     private DatabaseManager dbmanager;
 
+    EditText searchEditText;
+    Button searchButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,9 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         dbmanager = new DatabaseManager(this);
+        this.searchEditText = findViewById(R.id.searchEditText);
+        this.searchButton = findViewById(R.id.searchButton);
+
         User loggedUser = dbmanager.loadUser();
         if(loggedUser != null){
             TextView loggedUserEmailPrefix = findViewById(R.id.logged_user_email_prefix_textView);
@@ -100,6 +108,19 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                String searchParam = searchEditText.getText().toString();
+                Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+                intent.putExtra("searchParam", searchParam);
+                intent.putExtra("searchType", "name");
+                startActivity(intent);
+            }
+        });
 
     }
 

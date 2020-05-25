@@ -91,6 +91,41 @@ public class WebClient {
         return productList;
     }
 
+    public ArrayList<Product> SearchProducts(final String searchParam, final String searchType) throws InterruptedException {
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    HttpsTrustManager.allowAllSSL();
+
+                    URL url = new URL(PRODUCTLIST_URL + "search?param=" + searchParam + "&type=" + searchType);
+
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+
+                    connection.connect();
+
+                    InputStream inputStream = url.openStream();
+
+                    Reader streamReader = new InputStreamReader(inputStream);
+
+                    Type typeMyType = new TypeToken<ArrayList<Product>>(){}.getType();
+                    Gson gson = new Gson();
+                    ArrayList<Product> list = gson.fromJson(streamReader, typeMyType);
+
+                    productList = list;
+                    done = true;
+                }
+                catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                    done = true;
+                }
+            }
+        });
+
+        return productList;
+    }
+
     public void PostImage(String imageBitMapString)
     {
         this.imageString = imageBitMapString;
