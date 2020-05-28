@@ -15,6 +15,10 @@
     <string name="main_search">Procurar no catálogo</string>
 
     <!-- SIDE MENU -->
+    <string name="menu_category0">Smartphones</string>
+    <string name="menu_category1">Lavadoras</string>
+    <string name="menu_category2">Panelas</string>
+    <string name="menu_category3">Cadeiras</string>
     <string name="menu_new_product">Novo produto</string>
     <string name="menu_sales">Vendas</string>
     <string name="menu_orders">Compras</string>

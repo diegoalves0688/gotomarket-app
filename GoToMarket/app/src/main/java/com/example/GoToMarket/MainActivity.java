@@ -177,7 +177,28 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_new_product) {
+        if (id == R.id.nav_category0) {
+            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+            intent.putExtra("searchParam", "Smartphone");
+            intent.putExtra("searchType", "category");
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_category1) {
+            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+            intent.putExtra("searchParam", "Lavadora");
+            intent.putExtra("searchType", "category");
+            startActivity(intent);
+        }else if (id == R.id.nav_category2) {
+            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+            intent.putExtra("searchParam", "Panela");
+            intent.putExtra("searchType", "category");
+            startActivity(intent);
+        }else if (id == R.id.nav_category3) {
+            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+            intent.putExtra("searchParam", "Cadeira");
+            intent.putExtra("searchType", "category");
+            startActivity(intent);
+        }else if (id == R.id.nav_new_product) {
             Intent intent = new Intent(getBaseContext(), NewProductActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_sales) {
